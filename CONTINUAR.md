@@ -69,3 +69,7 @@ Copia para Drive, con nombres legibles: `../Grupo Barba - Anuncios octubre/` (64
   pidiendo la letra chica textual en el prompt. Los intentos malos quedaron como `*-letra-mal.png`.
   Yacochuya final todavía tiene detalles mínimos («FROCEDENCIA», la añada) ilegibles al tamaño del anuncio.
 - En 4:5 la foto va entera (contain) a la derecha y se funde a la izquierda; en 9:16 a sangre.
+
+## Repo
+
+GitHub: https://github.com/lautaromendezar-cmd/barba-ads (privado del usuario, rama `main`). Para otra PC: `RETOMAR-EN-OTRA-PC.md`. Lo terminado (PNG/MP4) no va al repo: está en la carpeta del Drive.
