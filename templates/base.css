@@ -1,0 +1,101 @@
+/* Base de las placas de Grupo Barba (octubre 2026).
+   Misma estructura que Desktop/Claude/ads: foto a sangre + titular editorial.
+   Identidad de Barba: marrón casi negro, crema, dorado; Cormorant + Montserrat. */
+
+@font-face { font-family: 'Cormorant Garamond'; font-weight: 600; src: url('../assets/fonts/CormorantGaramond-600-latin.woff2') format('woff2'); }
+@font-face { font-family: 'Cormorant Garamond'; font-weight: 600; src: url('../assets/fonts/CormorantGaramond-600-latin-ext.woff2') format('woff2'); unicode-range: U+0100-024F; }
+@font-face { font-family: 'Cormorant Garamond'; font-weight: 500; font-style: italic; src: url('../assets/fonts/CormorantGaramond-500i-latin.woff2') format('woff2'); }
+@font-face { font-family: 'Cormorant Garamond'; font-weight: 500; src: url('../assets/fonts/CormorantGaramond-500-latin.woff2') format('woff2'); }
+@font-face { font-family: 'Montserrat'; font-weight: 400 800; src: url('../assets/fonts/Montserrat-600-latin.woff2') format('woff2'); }
+
+:root {
+  --negro: #120c08;
+  --crema: #f3eadc;
+  --oro: #d9b673;
+  --oro-hondo: #a8803f;
+  --serif: 'Cormorant Garamond', Garamond, serif;
+  --sans: 'Montserrat', system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: var(--W); height: var(--H); overflow: hidden; }
+body { background: var(--negro); color: var(--crema); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+
+/* formatos: el render agrega f45 o f916 al <html> */
+html.f45  { --W: 1080px; --H: 1350px; --safe-top: 64px;  --safe-bot: 64px; }
+html.f916 { --W: 1080px; --H: 1920px; --safe-top: 282px; --safe-bot: 384px; } /* 14% arriba, 20% abajo */
+
+.frame { position: relative; width: var(--W); height: var(--H); overflow: hidden; }
+.photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.shade { position: absolute; inset: 0; }
+
+.head { position: absolute; left: 72px; right: 72px; top: var(--safe-top); display: flex; align-items: center; justify-content: space-between; }
+.head img { height: 140px; width: auto; display: block; filter: drop-shadow(0 2px 12px rgb(0 0 0 / .5)); }
+
+.copy { position: absolute; left: 72px; right: 72px; top: calc(var(--safe-top) + 186px); }
+html.f916 .head img { height: 168px; }
+html.f916 .copy { top: calc(var(--safe-top) + 214px); }
+.eyebrow { font-size: 25px; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--oro);
+  display: flex; align-items: center; gap: 18px; text-shadow: 0 1px 14px rgb(0 0 0 / .6); }
+.eyebrow::before { content: ''; width: 48px; height: 2px; background: var(--oro); flex: none; }
+
+.title { margin-top: 26px; font-family: var(--serif); font-weight: 600; font-size: 116px; line-height: .96;
+  letter-spacing: -.005em; color: var(--crema); text-shadow: 0 4px 40px rgb(0 0 0 / .55); }
+.title span { display: block; }
+.title em { text-wrap: balance; display: block; font-style: italic; font-weight: 500; color: var(--oro); font-size: 1.04em; margin-top: .06em; }
+.title.chico { font-size: 96px; }
+
+.chip { display: inline-flex; align-items: baseline; gap: 14px; margin-top: 38px; padding: 18px 28px 20px;
+  border: 2px solid var(--oro); background: rgb(18 12 8 / .55); backdrop-filter: blur(6px); }
+.chip small { font-size: 26px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--oro); }
+.chip b { font-size: 60px; font-weight: 800; letter-spacing: -.02em; color: var(--crema); line-height: 1; }
+.chip i { font-style: normal; font-size: 26px; font-weight: 500; color: rgb(243 234 220 / .8); }
+
+.pie { position: absolute; left: 72px; right: 72px; bottom: var(--safe-bot); }
+.sub { font-size: 30px; font-weight: 500; line-height: 1.35; color: rgb(243 234 220 / .9); text-wrap: balance;
+  text-shadow: 0 1px 16px rgb(0 0 0 / .7); }
+.envio { display: flex; align-items: center; gap: 16px; margin-top: 22px; padding-top: 22px;
+  border-top: 1px solid rgb(217 182 115 / .45); font-size: 28px; font-weight: 600; color: var(--oro); }
+.envio svg { width: 44px; height: 44px; flex: none; stroke: var(--oro); fill: none; stroke-width: 1.8; }
+
+/* velo: arriba sostiene el titular, abajo el pie; en 9:16 el pie queda más arriba */
+/* más velo detrás del texto: en fotos claras (copas, cielo) el dorado se perdía */
+.shade { background: linear-gradient(rgb(18 12 8 / .95), rgb(18 12 8 / .85) 30%, rgb(18 12 8 / .6) 44%, rgb(18 12 8 / .15) 58%, rgb(18 12 8 / .2) 68%, rgb(18 12 8 / .88) 84%, rgb(18 12 8 / .95)); }
+html.f916 .shade { background: linear-gradient(rgb(18 12 8 / .95), rgb(18 12 8 / .86) 28%, rgb(18 12 8 / .55) 40%, rgb(18 12 8 / .12) 50%, rgb(18 12 8 / .3) 60%, rgb(18 12 8 / .88) 70%, rgb(18 12 8 / .9) 82%, rgb(18 12 8 / .5) 100%); }
+
+/* velo local detrás del titular: el general no alcanza cuando la foto tiene
+   brillos justo donde cae el texto (bokeh de espumante, copas) */
+.copy { isolation: isolate; }
+.copy::before { content: ''; position: absolute; z-index: -1; left: -140px; right: -60px; top: -90px; bottom: -90px;
+  background: radial-gradient(closest-side, rgb(18 12 8 / .78), rgb(18 12 8 / .5) 55%, rgb(18 12 8 / 0)); }
+
+/* ── Placas de producto: botella real a la derecha, texto a la izquierda ── */
+.botella { position: absolute; right: 70px; bottom: 150px; height: 900px; width: auto; z-index: 1;
+  filter: sepia(.08) brightness(.95) drop-shadow(-18px 30px 34px rgb(0 0 0 / .65)); }
+html.f916 .botella { right: 80px; }
+.copy.angosta { right: 400px; z-index: 2; }
+.copy.angosta::before { right: -40px; }
+.copy.angosta .title em { font-size: .56em; line-height: 1.12; margin-top: .3em; }
+.lineas { margin-top: 30px; font-size: 25px; font-weight: 700; letter-spacing: .1em; line-height: 1.6; text-transform: uppercase; color: var(--oro); text-wrap: balance; }
+.precio { margin-top: 34px; display: flex; flex-direction: column; }
+.precio small { font-size: 28px; font-weight: 600; color: rgb(243 234 220 / .8); }
+.precio b { font-size: 112px; font-weight: 800; letter-spacing: -.03em; line-height: 1; }
+.precio i { font-style: normal; font-size: 28px; font-weight: 500; color: rgb(243 234 220 / .8); margin-top: 4px; }
+.precio span { margin-top: 14px; font-size: 30px; font-weight: 700; color: var(--oro); }
+.cierre { margin-top: 38px; display: inline-block; border: 2px solid var(--oro); padding: 18px 26px 20px;
+  font-family: var(--serif); font-size: 42px; font-weight: 500; line-height: 1.15; background: rgb(18 12 8 / .5); text-wrap: balance; }
+.pie.angosta { right: 400px; }
+/* en las de producto el texto va a la izquierda: velo lateral, así el fondo se ve del lado de la botella */
+.shade.lateral, html.f916 .shade.lateral { background:
+  linear-gradient(90deg, rgb(18 12 8 / .92), rgb(18 12 8 / .78) 38%, rgb(18 12 8 / .2) 62%, rgb(18 12 8 / 0) 75%),
+  linear-gradient(rgb(18 12 8 / .7), rgb(18 12 8 / 0) 25%, rgb(18 12 8 / 0) 80%, rgb(18 12 8 / .6)); }
+.contacto { position: absolute; height: 34px; border-radius: 50%; z-index: 1;
+  background: radial-gradient(closest-side, rgb(0 0 0 / .85), rgb(0 0 0 / .45) 55%, rgb(0 0 0 / 0)); }
+/* producto: columna de texto más angosta para no pisar la botella */
+.copy.angosta { right: 470px; }
+.copy.angosta .title { font-size: 92px; }
+.pie.angosta { right: 470px; }
+/* en 4:5 la foto vertical no entra: se achica hacia la esquina de abajo a la derecha
+   y se funde arriba y a la izquierda con el fondo, así la botella sale entera */
+html.f45 .photo.prod { object-fit: contain; object-position: 100% 100% !important;
+  -webkit-mask-image: linear-gradient(to right, transparent 28%, #000 48%); mask-image: linear-gradient(to right, transparent 28%, #000 48%); }
+.envio span { text-wrap: balance; }

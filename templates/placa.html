@@ -1,0 +1,139 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<script>
+  const Q = new URLSearchParams(location.search);
+  document.documentElement.className = 'f' + (Q.get('f') || '45');
+</script>
+<link rel="stylesheet" href="base.css">
+</head>
+<body><div class="frame" id="frame"></div>
+<script>
+/* Una plantilla, todas las placas: ?p=B1&o=1&f=45&r=caba
+   Cada pieza tiene opciones (una foto distinta cada una) y dos regiones,
+   que sólo cambian la línea del envío salvo en B5, que cambia todo. */
+
+const ENVIO = {
+  caba: 'Envío sin cargo en CABA y Zona Norte',
+  interior: 'Te lo llevamos sin cargo al expreso que elijas',
+};
+
+// pos = encuadre en 9:16, pos45 = encuadre en 4:5; shade = cuánto oscurecer arriba/abajo
+const P = {
+  B1: {
+    eyebrow: 'Distribuidora mayorista',
+    title: ['Directo', 'de bodega.'], em: 'Sin intermediarios.',
+    sub: 'Vinos, espumantes y regalos empresariales, por caja.',
+    op: [
+      { foto: 'cajas', pos: '50% 50%', pos45: '50% 62%' },
+      { foto: 'cajon', pos: '50% 50%', pos45: '50% 70%' },
+    ],
+  },
+  B2: {
+    eyebrow: 'Ofertas de octubre',
+    title: ['¿Qué vino llevás', 'este finde?'], em: 'Pedinos la lista.', chico: true,
+    sub: 'Precios por caja, directo de bodega.',
+    op: [
+      { foto: 'servir', pos: '50% 50%', pos45: '50% 72%' },
+      { foto: 'brindis', pos: '50% 55%', pos45: '50% 70%' },
+    ],
+  },
+  B3: {
+    op: [
+      // la copa ocupa todo el cuadro: se achica sobre el negro puro de la foto
+      { foto: 'copa', pos: '50% 100%', pos45: '50% 100%', fondo: '#090807', estilo: 'transform-origin:80% 100%;transform:scale(.82)', estilo45: 'transform-origin:96% 100%;transform:scale(.7)',
+        eyebrow: 'Mejores precios', title: ['Los vinos', 'que te gustan,'], em: 'a precio de distribuidora.',
+        sub: 'Tintos, blancos y espumantes de las mejores bodegas, directo y por caja.' },
+      { foto: 'espumante', pos: '50% 60%', pos45: '50% 82%',
+        eyebrow: 'Para las fiestas', title: ['Espumantes', 'de bodega,'], em: 'a precio mayorista.',
+        chip: { small: 'Desde', b: '$6.800', i: 'la botella' },
+        sub: 'María Codorníu, Amalaya, Rosell Boher y Cruzat.' },
+    ],
+  },
+  B4: {
+    eyebrow: 'Las bodegas que buscás',
+    title: ['Michel Rolland.', 'Codorníu. Colomé.', 'Rosell Boher.'], em: 'Todas en una sola lista.', chico: true,
+    sub: 'Directo de bodega, sin intermediarios. Pedinos la lista de ofertas.',
+    op: [
+      { foto: 'cava', pos: '50% 50%', pos45: '50% 60%' },
+      { foto: 'vinedo', pos: '50% 50%', pos45: '50% 78%' },
+    ],
+  },
+  B5: {
+    op: [{ foto: 'reparto', pos: '50% 50%', pos45: '50% 75%' }],
+    caba: {
+      eyebrow: 'Envíos', title: ['Pedís la caja,'], em: 'te la llevamos sin cargo.',
+      sub: 'Entregas en CABA y Zona Norte. Otras zonas del AMBA, consultanos.',
+      envio: 'Venta por caja, directo de bodega',
+    },
+    interior: {
+      eyebrow: 'Envíos a todo el país', title: ['¿Estás', 'en el interior?'], em: 'Te lo llevamos al expreso, sin cargo.', chico: true,
+      sub: 'Vos elegís el expreso, nosotros te llevamos las cajas.',
+      envio: 'Venta por caja, directo de bodega',
+    },
+  },
+
+  /* ── De producto: botella real recortada sobre fondo de IA ── */
+  B6: {
+    eyebrow: 'Bodega Séptima', title: ['María', 'Codorníu.'], em: 'Espumantes de la casa Codorníu.',
+    lineas: 'Extra Brut · Brut Nature · Rosé · Handcraft · Método Tradicional',
+    precio: { desde: true, unidad: '$6.800', caja: '$40.800' },
+    op: [{ foto: 'prod-maria', pos: '50% 50%', pos45: '50% 40%', producto: true }],
+  },
+  B7: {
+    eyebrow: 'Súper oferta', title: ['Amalaya.'], em: 'Brut Nature de los Valles Calchaquíes.',
+    lineas: 'Riesling · Torrontés',
+    precio: { unidad: '$10.917', caja: '$65.502' },
+    op: [{ foto: 'prod-amalaya', pos: '50% 50%', pos45: '50% 40%', producto: true }],
+  },
+  B8: {
+    eyebrow: 'Agrelo, Mendoza', title: ['Rosell', 'Boher.'], em: 'Vinos y espumantes de método tradicional.',
+    lineas: 'Casa Boher · Rosell Boher Brut y Rosé',
+    precio: { desde: true, unidad: '$10.588', caja: '$63.528' },
+    op: [{ foto: 'prod-rosell', pos: '50% 50%', pos45: '50% 40%', producto: true }],
+  },
+  B9: {
+    eyebrow: 'Bodega Rolland', title: ['Michel', 'Rolland.'], em: 'El enólogo más influyente del mundo hace vino en Mendoza.',
+    lineas: 'Mariflor Malbec',
+    cierre: 'Venta por caja cerrada. Consultá precio.',
+    op: [{ foto: 'prod-rolland', pos: '50% 50%', pos45: '50% 40%', producto: true }],
+  },
+  B10: {
+    eyebrow: 'Cafayate, Salta', title: ['Yacochuya.'], em: 'El vino de Michel Rolland a más de 2.000 metros de altura.',
+    lineas: 'San Pedro de Yacochuya · Coquena · Yacochuya Malbec',
+    cierre: 'Venta por caja cerrada. Consultá precio.',
+    op: [{ foto: 'prod-yacochuya', pos: '50% 50%', pos45: '50% 40%', producto: true }],
+  },
+};
+
+const p = Q.get('p') || 'B1';
+const o = +(Q.get('o') || 1);
+const r = Q.get('r') || 'caba';
+const f = Q.get('f') || '45';
+const base = P[p];
+const op = base.op[o - 1];
+const d = { ...base, ...(base[r] || {}), ...op };
+window.OPTIONS = base.op.length;
+
+const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]);
+const CAMION = `<svg viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 33.5V12.5h26.5v21"/><path d="M29 19.5h8.5l8 8.5v5.5H29"/><circle cx="13.5" cy="36.5" r="4"/><circle cx="36" cy="36.5" r="4"/><path d="M2.5 33.5h7M17.5 33.5h14.5"/></svg>`;
+
+if (d.fondo) document.getElementById('frame').style.background = d.fondo;
+document.getElementById('frame').innerHTML = `
+  <img class="photo${d.producto ? ' prod' : ''}" src="../assets/gen/${d.foto}.jpg" style="object-position:${f === '45' ? d.pos45 : d.pos};${(f === '45' ? d.estilo45 : d.estilo) || ''}">
+  <div class="shade${d.producto ? ' lateral' : ''}"></div>
+  <div class="head"><img src="../assets/logos/grupo-barba-claro.png" alt="Grupo Barba"></div>
+  <div class="copy${d.producto ? ' angosta' : ''}">
+    <div class="eyebrow">${esc(d.eyebrow)}</div>
+    <h1 class="title${d.chico ? ' chico' : ''}">${d.title.map((t) => `<span>${esc(t)}</span>`).join('')}<em>${esc(d.em)}</em></h1>
+    ${d.lineas ? `<p class="lineas">${esc(d.lineas)}</p>` : ''}
+    ${d.precio ? `<div class="precio">${d.precio.desde ? '<small>Desde</small>' : ''}<b>${esc(d.precio.unidad)}</b><i>por botella</i><span>Caja de 6${d.precio.desde ? ' desde' : ''}: ${esc(d.precio.caja)}</span></div>` : ''}
+    ${d.cierre ? `<div class="cierre">${esc(d.cierre)}</div>` : ''}
+    ${d.chip ? `<div class="chip"><small>${esc(d.chip.small)}</small><b>${esc(d.chip.b)}</b><i>${esc(d.chip.i)}</i></div>` : ''}
+  </div>
+  <div class="pie${d.producto ? ' angosta' : ''}">
+    ${d.sub ? `<p class="sub">${esc(d.sub)}</p>` : ''}
+    <div class="envio">${CAMION}<span>${esc(d.envio || ENVIO[r])}</span></div>
+  </div>`;
+window.READY = Promise.all([document.fonts.ready, ...[...document.images].map((i) => i.decode().catch(() => {}))]).then(() => new Promise((r) => setTimeout(r, 50)));
+</script>
+</body></html>

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+  @font-face { font-family: 'Cormorant Garamond'; font-weight: 600; src: url('assets/fonts/CormorantGaramond-600-latin.woff2') format('woff2'); }
+  @font-face { font-family: 'Cormorant Garamond'; font-weight: 500; font-style: italic; src: url('assets/fonts/CormorantGaramond-500i-latin.woff2') format('woff2'); }
+  @font-face { font-family: 'Montserrat'; font-weight: 400 800; src: url('assets/fonts/Montserrat-600-latin.woff2') format('woff2'); }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: #120c08; }
+  :root { --negro: #120c08; --crema: #f3eadc; --oro: #d9b673; }
+  body { color: var(--crema); font-family: 'Montserrat', sans-serif; -webkit-font-smoothing: antialiased; }
+  #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--negro); }
+  .clip { position: absolute; inset: 0; }
+  .full { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .velo { position: absolute; inset: 0; }
+  .center { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+  .big { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 176px; line-height: .94; letter-spacing: -.01em; color: var(--crema); }
+  .big em { font-style: italic; font-weight: 500; color: var(--oro); }
+  .mid { font-size: 128px; }
+  .line { display: block; overflow: hidden; padding: .02em .08em .12em; }
+  .line > span { display: block; }
+  .eyebrow { font-size: 26px; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: var(--oro);
+    display: flex; align-items: center; gap: 18px; }
+  .eyebrow::before, .eyebrow::after { content: ''; width: 44px; height: 2px; background: var(--oro); }
+  .sombra-txt { text-shadow: 0 4px 40px rgb(0 0 0 / .6); }
+  /* el cierre: igual en las cuatro piezas */
+  .fin .logo { height: 230px; width: auto; }
+  .fin .big { margin-top: 70px; }
+  .fin .sub { margin-top: 44px; font-size: 32px; font-weight: 500; line-height: 1.4; color: rgb(243 234 220 / .88); max-width: 820px; text-wrap: balance; }
+  .fin .envio { margin-top: 40px; padding-top: 30px; border-top: 1px solid rgb(217 182 115 / .45); display: flex; gap: 18px; align-items: center;
+    font-size: 30px; font-weight: 600; color: var(--oro); }
+  .envio svg { width: 48px; height: 48px; stroke: var(--oro); fill: none; stroke-width: 1.8; flex: none; }
+  .grano { position: absolute; inset: 0; pointer-events: none; opacity: .07; mix-blend-mode: overlay;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="12.67" data-width="1080" data-height="1920">
+
+  <section id="s1" class="clip center" data-start="0" data-duration="2.1" data-track-index="1">
+    <div class="velo" style="background:radial-gradient(80% 55% at 50% 50%, #2a1d13, #120c08 75%)"></div>
+    <h1 class="big" style="position:relative"><span class="line"><span id="s1a">Directo</span></span><span class="line"><span id="s1b"><em>de bodega.</em></span></span></h1>
+  </section>
+
+  <section id="s2" class="clip" data-start="2.1" data-duration="2.4" data-track-index="1">
+    <div class="clip" id="s2f1"><img class="full" id="s2i1" src="assets/gen/cajas.jpg"></div>
+    <div class="clip" id="s2f2"><img class="full" id="s2i2" src="assets/gen/cava.jpg"></div>
+    <div class="velo" style="background:linear-gradient(rgb(18 12 8 / .35), rgb(18 12 8 / .82) 42%, rgb(18 12 8 / .82) 62%, rgb(18 12 8 / .35))"></div>
+    <div class="clip center"><h1 class="big mid sombra-txt"><span class="line"><span id="s2a">Sin</span></span><span class="line"><span id="s2b"><em>intermediarios.</em></span></span></h1></div>
+  </section>
+
+  <section id="s3" class="clip" data-start="4.5" data-duration="3.27" data-track-index="1">
+    <div class="velo" style="background:radial-gradient(70% 45% at 50% 62%, #3a2817, #120c08 80%)"></div>
+    <div class="center" style="position:absolute;left:0;right:0;top:300px"><p class="eyebrow" id="s3e">Las bodegas que buscás</p></div>
+    <div class="marca" id="m0">
+      <div class="center" style="position:absolute;left:0;right:0;top:390px"><h2 class="big mid" style="white-space:nowrap">Michel Rolland</h2></div>
+      <div style="position:absolute;left:0;right:0;top:600px;display:flex;justify-content:center"><img src="assets/botellas/rolland.png" style="height:900px;filter:drop-shadow(0 30px 40px rgb(0 0 0 / .6))"></div>
+    </div>
+    <div class="marca" id="m1">
+      <div class="center" style="position:absolute;left:0;right:0;top:390px"><h2 class="big mid" style="white-space:nowrap">Yacochuya</h2></div>
+      <div style="position:absolute;left:0;right:0;top:600px;display:flex;justify-content:center"><img src="assets/botellas/yacochuya.png" style="height:900px;filter:drop-shadow(0 30px 40px rgb(0 0 0 / .6))"></div>
+    </div>
+    <div class="marca" id="m2">
+      <div class="center" style="position:absolute;left:0;right:0;top:390px"><h2 class="big mid" style="white-space:nowrap">Codorníu</h2></div>
+      <div style="position:absolute;left:0;right:0;top:600px;display:flex;justify-content:center"><img src="assets/botellas/maria-codorniu.png" style="height:900px;filter:drop-shadow(0 30px 40px rgb(0 0 0 / .6))"></div>
+    </div>
+    <div class="marca" id="m3">
+      <div class="center" style="position:absolute;left:0;right:0;top:390px"><h2 class="big mid" style="white-space:nowrap">Colomé</h2></div>
+      <div style="position:absolute;left:0;right:0;top:600px;display:flex;justify-content:center"><img src="assets/botellas/amalaya.png" style="height:900px;filter:drop-shadow(0 30px 40px rgb(0 0 0 / .6))"></div>
+    </div>
+    <div class="marca" id="m4">
+      <div class="center" style="position:absolute;left:0;right:0;top:390px"><h2 class="big mid" style="white-space:nowrap">Rosell Boher</h2></div>
+      <div style="position:absolute;left:0;right:0;top:600px;display:flex;justify-content:center"><img src="assets/botellas/rosell-boher.png" style="height:900px;filter:drop-shadow(0 30px 40px rgb(0 0 0 / .6))"></div>
+    </div>
+    <div class="marca" id="m5">
+      <div class="center" style="position:absolute;left:0;right:0;top:390px"><h2 class="big mid" style="white-space:nowrap">Cruzat</h2></div>
+      <div style="position:absolute;left:0;right:0;top:600px;display:flex;justify-content:center"><img src="assets/botellas/cruzat-premier.png" style="height:900px;filter:drop-shadow(0 30px 40px rgb(0 0 0 / .6))"></div>
+    </div>
+  </section>
+
+  <section id="s4" class="clip center" data-start="7.7700000000000005" data-duration="1.5" data-track-index="1">
+    <div class="velo" style="background:radial-gradient(80% 55% at 50% 50%, #2a1d13, #120c08 75%)"></div>
+    <h1 class="big mid" style="position:relative"><span class="line"><span id="s4a">Precio de</span></span><span class="line"><span id="s4b"><em>distribuidora.</em></span></span></h1>
+  </section>
+  <section id="s5" class="clip center fin" data-start="9.27" data-duration="3.4000000000000004" data-track-index="3">
+    <div class="velo" style="background:radial-gradient(90% 60% at 50% 45%, #2a1d13, #120c08 75%)"></div>
+    <div class="center" style="position:relative">
+      <img class="logo" id="s5-logo" src="assets/logos/grupo-barba-claro.png" alt="Grupo Barba">
+      <h1 class="big mid"><span class="line"><span id="s5-a">Pedinos</span></span><span class="line"><span id="s5-b"><em>la lista.</em></span></span></h1>
+      <p class="sub" id="s5-sub">Precios por caja, directo de bodega.</p>
+      <div class="envio" id="s5-env"><svg viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 33.5V12.5h26.5v21"/><path d="M29 19.5h8.5l8 8.5v5.5H29"/><circle cx="13.5" cy="36.5" r="4"/><circle cx="36" cy="36.5" r="4"/><path d="M2.5 33.5h7M17.5 33.5h14.5"/></svg><span>Envío sin cargo en CABA y Zona Norte</span></div>
+    </div>
+  </section>
+  <div class="grano"></div>
+</div>
+<script>
+  const tl = gsap.timeline({ paused: true });
+  const up = (sel, at, d = .6) => tl.fromTo(sel, { yPercent: 115 }, { yPercent: 0, duration: d, ease: 'power4.out' }, at);
+
+  // 1 · Directo de bodega
+  up('#s1a', .1); up('#s1b', .28);
+  tl.fromTo('#s1 .big', { scale: 1 }, { scale: 1.06, duration: 2.1, ease: 'none' }, 0);
+  // 2 · fotos con empuje y corte; el texto encima
+  tl.fromTo('#s2i1', { scale: 1.12 }, { scale: 1, duration: 1.3, ease: 'none' }, 2.1);
+  tl.fromTo('#s2f2', { opacity: 0 }, { opacity: 1, duration: .25 }, 3.3);
+  tl.fromTo('#s2i2', { scale: 1.12 }, { scale: 1.02, duration: 1.3, ease: 'none' }, 3.3);
+  up('#s2a', 2.25); up('#s2b', 2.4);
+  // 3 · ráfaga de bodegas con la botella real
+  tl.fromTo('#s3e', { opacity: 0 }, { opacity: 1, duration: .3 }, 4.5 + .05);
+  tl.fromTo('#m0', { opacity: 0 }, { opacity: 1, duration: .12 }, 4.50);
+  tl.fromTo('#m0 h2', { yPercent: 40, opacity: 0 }, { yPercent: 0, opacity: 1, duration: .35, ease: 'power3.out' }, 4.50);
+  tl.fromTo('#m0 img', { y: 140, opacity: 0 }, { y: 0, opacity: 1, duration: .42, ease: 'power3.out' }, 4.50);
+  tl.to('#m0', { opacity: 0, duration: .1 }, 5.00);
+  tl.fromTo('#m1', { opacity: 0 }, { opacity: 1, duration: .12 }, 5.02);
+  tl.fromTo('#m1 h2', { yPercent: 40, opacity: 0 }, { yPercent: 0, opacity: 1, duration: .35, ease: 'power3.out' }, 5.02);
+  tl.fromTo('#m1 img', { y: 140, opacity: 0 }, { y: 0, opacity: 1, duration: .42, ease: 'power3.out' }, 5.02);
+  tl.to('#m1', { opacity: 0, duration: .1 }, 5.52);
+  tl.fromTo('#m2', { opacity: 0 }, { opacity: 1, duration: .12 }, 5.54);
+  tl.fromTo('#m2 h2', { yPercent: 40, opacity: 0 }, { yPercent: 0, opacity: 1, duration: .35, ease: 'power3.out' }, 5.54);
+  tl.fromTo('#m2 img', { y: 140, opacity: 0 }, { y: 0, opacity: 1, duration: .42, ease: 'power3.out' }, 5.54);
+  tl.to('#m2', { opacity: 0, duration: .1 }, 6.04);
+  tl.fromTo('#m3', { opacity: 0 }, { opacity: 1, duration: .12 }, 6.06);
+  tl.fromTo('#m3 h2', { yPercent: 40, opacity: 0 }, { yPercent: 0, opacity: 1, duration: .35, ease: 'power3.out' }, 6.06);
+  tl.fromTo('#m3 img', { y: 140, opacity: 0 }, { y: 0, opacity: 1, duration: .42, ease: 'power3.out' }, 6.06);
+  tl.to('#m3', { opacity: 0, duration: .1 }, 6.56);
+  tl.fromTo('#m4', { opacity: 0 }, { opacity: 1, duration: .12 }, 6.58);
+  tl.fromTo('#m4 h2', { yPercent: 40, opacity: 0 }, { yPercent: 0, opacity: 1, duration: .35, ease: 'power3.out' }, 6.58);
+  tl.fromTo('#m4 img', { y: 140, opacity: 0 }, { y: 0, opacity: 1, duration: .42, ease: 'power3.out' }, 6.58);
+  tl.to('#m4', { opacity: 0, duration: .1 }, 7.08);
+  tl.fromTo('#m5', { opacity: 0 }, { opacity: 1, duration: .12 }, 7.10);
+  tl.fromTo('#m5 h2', { yPercent: 40, opacity: 0 }, { yPercent: 0, opacity: 1, duration: .35, ease: 'power3.out' }, 7.10);
+  tl.fromTo('#m5 img', { y: 140, opacity: 0 }, { y: 0, opacity: 1, duration: .42, ease: 'power3.out' }, 7.10);
+  
+  // 4 · Precio de distribuidora
+  up('#s4a', 7.7700000000000005 + .05, .5); up('#s4b', 7.7700000000000005 + .18, .5);
+  // 5 · cierre
+  
+  tl.fromTo('#s5', { opacity: 0 }, { opacity: 1, duration: .45, ease: 'power2.out' }, 9.27);
+  tl.fromTo('#s5-logo', { opacity: 0, scale: .92 }, { opacity: 1, scale: 1, duration: .7, ease: 'power3.out' }, 9.27 + .05);
+  up('#s5-a', 9.27 + .3); up('#s5-b', 9.27 + .45);
+  tl.fromTo('#s5-sub', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: .5, ease: 'power3.out' }, 9.27 + .85);
+  tl.fromTo('#s5-env', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: .5, ease: 'power3.out' }, 9.27 + 1.05);
+  window.__timelines['main'] = tl;
+</script>
+</body>
+</html>

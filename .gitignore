@@ -1,0 +1,28 @@
+node_modules/
+# lo terminado vive en la carpeta del Drive «Grupo Barba - Anuncios octubre»
+/B1/
+/B2/
+/B3/
+/B4/
+/B5/
+/B6/
+/B7/
+/B8/
+/B9/
+/B10/
+/V1/
+/V2/
+/V3/
+/V4/
+# primer intento de V4: brazos sin cuerpo, no usar
+video/assets/clips/reparto-con-brazos.mp4
+video/snapshots/
+video/index.html
+# originales de Higgsfield: alcanzan los JPG (los usan las plantillas)
+assets/gen/*.png
+# cachés de hyperframes
+video/.hyperframes/
+video/.thumbnails/
+video/.transcode-cache/
+# fondo del piloto descartado
+video/assets/fondos/
