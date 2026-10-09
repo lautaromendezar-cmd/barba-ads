@@ -50,6 +50,14 @@ IDs de las fotos (sirven como start_image para clips nuevos): cajas 07faab16, ca
 servir 06515577, brindis 9e7aab0a, copa 6dcada1e, espumante 862938d0, cava 3f55649c,
 viñedo 106476a8, reparto 8708849e.
 
+## Devolución del cliente (9-oct)
+
+"Desde $X" con la lista de productos al lado confundía: en una misma bodega cada producto
+tiene otro precio. Ahora **el precio nombra el producto** y el resto va con "consultá precio":
+María Codorníu = Extra Brut $6.800 (B6, B3-o2, V3); Rosell Boher = Casa Boher $10.588 (B8).
+Amalaya es un solo producto y no cambió. Campos nuevos en la plantilla: `precio.que` y `nota`.
+Ojo: la botella de B6 dice Brut Nature y la de B8 es el Rosell Boher Brut, no la del precio.
+
 ## Pendiente
 
 - Elegir opciones con el cliente. Versiones 4:5 de los videos (no hechas). Música (son mudos).

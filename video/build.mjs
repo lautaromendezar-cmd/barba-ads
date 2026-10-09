@@ -171,7 +171,7 @@ function clipConTexto({ clip, eyebrow, l1, l2, chip, extra, cierre, velo }, r) {
       <p class="eyebrow" id="t0" style="justify-content:flex-start">${esc(eyebrow)}</p>
       <h1 class="big mid sombra-txt" style="margin-top:28px;text-align:left">${L1.map((x, i) => `<span class="line"><span id="t1${i}">${esc(x)}</span></span>`).join('')}<span class="line"><span id="t2"><em>${esc(l2)}</em></span></span></h1>
       ${chip ? `<div id="t3" style="display:inline-flex;align-items:baseline;gap:16px;margin-top:36px;padding:18px 28px 20px;border:2px solid var(--oro);background:rgb(18 12 8 / .55)">
-        <span style="font-size:28px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--oro)">${esc(chip[0])}</span>
+        <span style="font-size:24px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--oro)">${esc(chip[0])}</span>
         <b style="font-size:72px;font-weight:800;letter-spacing:-.02em;line-height:1">${esc(chip[1])}</b>
         <span style="font-size:28px;color:rgb(243 234 220 / .8)">${esc(chip[2])}</span></div>` : ''}
       ${extra ? `<p id="t4" class="sombra-txt" style="margin-top:30px;font-size:32px;font-weight:500;line-height:1.4;max-width:860px">${esc(extra)}</p>` : ''}
@@ -198,7 +198,7 @@ const V = {
     clipConTexto({
       clip: 'espumante', eyebrow: 'Para las fiestas', l1: ['Espumantes', 'de bodega,'], l2: 'a precio mayorista.',
       velo: 'linear-gradient(rgb(18 12 8 / .94), rgb(18 12 8 / .86) 38%, rgb(18 12 8 / .35) 52%, rgb(18 12 8 / 0) 62%, rgb(18 12 8 / .4))',
-      chip: ['Desde', '$6.800', 'la botella'], extra: 'María Codorníu, Amalaya, Rosell Boher y Cruzat.',
+      chip: ['María Codorníu Extra Brut', '$6.800', 'la botella'], extra: 'Amalaya, Rosell Boher, Cruzat y otras etiquetas: consultá precio.',
       cierre: { l1: 'Pedinos', l2: 'la lista.', sub: 'Espumantes por caja, directo de bodega.' },
     }, r),
   v4: (r) =>

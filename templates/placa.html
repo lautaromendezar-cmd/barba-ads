@@ -45,8 +45,8 @@ const P = {
         sub: 'Tintos, blancos y espumantes de las mejores bodegas, directo y por caja.' },
       { foto: 'espumante', pos: '50% 60%', pos45: '50% 82%',
         eyebrow: 'Para las fiestas', title: ['Espumantes', 'de bodega,'], em: 'a precio mayorista.',
-        chip: { small: 'Desde', b: '$6.800', i: 'la botella' },
-        sub: 'María Codorníu, Amalaya, Rosell Boher y Cruzat.' },
+        chip: { small: 'María Codorníu Extra Brut', b: '$6.800', i: 'la botella' },
+        sub: 'Amalaya, Rosell Boher, Cruzat y otras etiquetas: consultá precio.' },
     ],
   },
   B4: {
@@ -75,8 +75,8 @@ const P = {
   /* ── De producto: botella real recortada sobre fondo de IA ── */
   B6: {
     eyebrow: 'Bodega Séptima', title: ['María', 'Codorníu.'], em: 'Espumantes de la casa Codorníu.',
-    lineas: 'Extra Brut · Brut Nature · Rosé · Handcraft · Método Tradicional',
-    precio: { desde: true, unidad: '$6.800', caja: '$40.800' },
+    precio: { que: 'Extra Brut', unidad: '$6.800', caja: '$40.800' },
+    nota: 'Brut Nature, Rosé, Handcraft y Método Tradicional: consultá precio.',
     op: [{ foto: 'prod-maria', pos: '50% 50%', pos45: '50% 40%', producto: true }],
   },
   B7: {
@@ -87,8 +87,8 @@ const P = {
   },
   B8: {
     eyebrow: 'Agrelo, Mendoza', title: ['Rosell', 'Boher.'], em: 'Vinos y espumantes de método tradicional.',
-    lineas: 'Casa Boher · Rosell Boher Brut y Rosé',
-    precio: { desde: true, unidad: '$10.588', caja: '$63.528' },
+    precio: { que: 'Casa Boher', unidad: '$10.588', caja: '$63.528' },
+    nota: 'Rosell Boher Brut, Rosé y demás cepas: consultá precio.',
     op: [{ foto: 'prod-rosell', pos: '50% 50%', pos45: '50% 40%', producto: true }],
   },
   B9: {
@@ -126,7 +126,8 @@ document.getElementById('frame').innerHTML = `
     <div class="eyebrow">${esc(d.eyebrow)}</div>
     <h1 class="title${d.chico ? ' chico' : ''}">${d.title.map((t) => `<span>${esc(t)}</span>`).join('')}<em>${esc(d.em)}</em></h1>
     ${d.lineas ? `<p class="lineas">${esc(d.lineas)}</p>` : ''}
-    ${d.precio ? `<div class="precio">${d.precio.desde ? '<small>Desde</small>' : ''}<b>${esc(d.precio.unidad)}</b><i>por botella</i><span>Caja de 6${d.precio.desde ? ' desde' : ''}: ${esc(d.precio.caja)}</span></div>` : ''}
+    ${d.precio ? `<div class="precio">${d.precio.que ? `<small class="que">${esc(d.precio.que)}</small>` : ''}<b>${esc(d.precio.unidad)}</b><i>por botella</i><span>Caja de 6: ${esc(d.precio.caja)}</span></div>` : ''}
+    ${d.nota ? `<p class="nota">${esc(d.nota)}</p>` : ''}
     ${d.cierre ? `<div class="cierre">${esc(d.cierre)}</div>` : ''}
     ${d.chip ? `<div class="chip"><small>${esc(d.chip.small)}</small><b>${esc(d.chip.b)}</b><i>${esc(d.chip.i)}</i></div>` : ''}
   </div>
